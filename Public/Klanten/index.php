@@ -30,7 +30,7 @@ $klant = $klanten->getAllKlanten();
     </nav>
     <main>
         <div class="filterBar"></div>
-        <h2>Klanten beheer</h2>
+        <h2>Klanten</h2>
         <div class="customers">
             <table>
                 <tr>

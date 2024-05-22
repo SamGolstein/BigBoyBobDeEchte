@@ -39,7 +39,6 @@ main {
         color: #777;
     }
 
-
 .navBar {
     height: 50px;
     color: #fff;
@@ -93,6 +92,7 @@ h1 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    margin: 0 auto;
 }
 
 p {
