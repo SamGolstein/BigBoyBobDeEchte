@@ -1,5 +1,5 @@
 <?php
-include ('../../src/cijfers.php');
+include ('../../src/src/klanten.php');
 
 //Get kan bij andere accounts.
 if(isset($_GET["klantenId"]))
@@ -21,7 +21,6 @@ if(isset($_POST["updateKlant"]))
         } else {
             $melding = "Klant is niet bewerkt.";
         }
-// }
 }
 ?>
 
