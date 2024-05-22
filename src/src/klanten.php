@@ -33,7 +33,7 @@ class Klanten extends Database
 
     public function deleteKlant($id)
     {
-        $query = "DELETE FROM klanten WHERE id = '$id';";
+        $query = "DELETE FROM klant WHERE klantId = '$id';";
 
         if(!parent::voerQueryUit($query))
             {
