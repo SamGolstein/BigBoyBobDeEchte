@@ -8,7 +8,7 @@ class Klanten extends Database
 
     public function getKlant($id)
     {
-        $query = parent::getConnection()->prepare("SELECT * FROM klanten WHERE id = '?';");
+        $query = parent::getConnection()->prepare("SELECT * FROM klant WHERE klantId = '?';");
 
         $query->bindparam(1, $id);
         return parent::voerQueryUit($query);
@@ -42,7 +42,7 @@ class Klanten extends Database
 
     public function deleteKlant($id)
     {
-        $query = "DELETE FROM klanten WHERE id = $id;";
+        $query = "DELETE FROM klant WHERE klantId = $id;";
 
         if(!parent::voerQueryUit($query))
             {
