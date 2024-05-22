@@ -11,7 +11,7 @@ $klant = $klanten->getAllKlanten();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="../style/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@ $klant = $klanten->getAllKlanten();
                     echo "<tr id='tr_foreach'>";
                     echo "<td>" . $k["voornaam"] . "</td>";
                     echo "<td>" . $k["achternaam"] . "</td>";
-                    echo "<td><a href=update.php?klantenId=" . $k['klantId'] . ">Bewerken</a></td>";
+                    echo "<td><a href=update.php?klantenId=" . $k['klantI-+d'] . ">Bewerken</a></td>";
                     echo "<td><a href=delete.php?klantenId=" . $k['klantId'] . ">Verwijderen</a></td>";
                     echo "</tr>";
                 }
