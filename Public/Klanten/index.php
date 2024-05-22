@@ -37,8 +37,8 @@ $klant = $klanten->getAllKlanten();
                     echo "<tr id='tr_foreach'>";
                     echo "<td>" . $k["voornaam"] . "</td>";
                     echo "<td>" . $k["achternaam"] . "</td>";
-                    echo "<td><a href=update.php?klantenId=" . $k['id'] . ">Bewerken</a></td>";
-                    echo "<td><a href=delete.php?klantenId=" . $k['id'] . ">Verwijderen</a></td>";
+                    echo "<td><a href=update.php?klantenId=" . $k['klantId'] . ">Bewerken</a></td>";
+                    echo "<td><a href=delete.php?klantenId=" . $k['klantId'] . ">Verwijderen</a></td>";
                     echo "</tr>";
                 }
             ?>
