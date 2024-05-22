@@ -7,7 +7,7 @@ class Klanten extends Database
 
     public function getAllKlanten()
     {
-        $query = "SELECT * FROM klanten;";
+        $query = "SELECT * FROM klant;";
         return parent::voerQueryUit($query);
     }
 
@@ -16,7 +16,7 @@ class Klanten extends Database
         $voornaam = $this->getVoornaam();
         $achternaam = $this->getAchternaam();
         
-        $query = parent::getConnection()->prepare("INSERT INTO klanten (voornaam, achternaam)
+        $query = parent::getConnection()->prepare("INSERT INTO klant (voornaam, achternaam)
                                                 VALUES (?,?);");
         $query->bindparam(1, $voornaam);
         $query->bindparam(2, $achternaam);
