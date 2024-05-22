@@ -4,10 +4,19 @@ class Klanten extends Database
 {
     private $voornaam;
     private $achternaam;
+    private $id;
+
+    public function getKlant($id)
+    {
+        $query = parent::getConnection()->prepare("SELECT * FROM klant WHERE klantId = '?';");
+
+        $query->bindparam(1, $id);
+        return parent::voerQueryUit($query);
+    }
 
     public function getAllKlanten()
     {
-        $query = "SELECT * FROM klanten;";
+        $query = "SELECT * FROM klant;";
         return parent::voerQueryUit($query);
     }
 
@@ -16,7 +25,7 @@ class Klanten extends Database
         $voornaam = $this->getVoornaam();
         $achternaam = $this->getAchternaam();
         
-        $query = parent::getConnection()->prepare("INSERT INTO klanten (voornaam, achternaam)
+        $query = parent::getConnection()->prepare("INSERT INTO klant (voornaam, achternaam)
                                                 VALUES (?,?);");
         $query->bindparam(1, $voornaam);
         $query->bindparam(2, $achternaam);
@@ -33,7 +42,7 @@ class Klanten extends Database
 
     public function deleteKlant($id)
     {
-        $query = "DELETE FROM klanten WHERE id = '$id';";
+        $query = "DELETE FROM klant WHERE klantId = $id;";
 
         if(!parent::voerQueryUit($query))
             {
@@ -63,5 +72,15 @@ class Klanten extends Database
     public function setAchternaam($achternaam)
     {
         $this->achternaam = $achternaam;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 }
