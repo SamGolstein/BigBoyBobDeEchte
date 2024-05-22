@@ -5,7 +5,7 @@ include ('../../src/cijfers.php');
 if(isset($_GET["klantenId"]))
 {
     $klant = new Klanten();
-    $klanten = $klant->getKlanten($_GET['klantenId']);
+    $klanten = $klant->getKlant($_GET['klantenId']);
 }
 
 if(isset($_POST["updateKlant"]))
