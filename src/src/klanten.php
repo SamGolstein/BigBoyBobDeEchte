@@ -5,6 +5,14 @@ class Klanten extends Database
     private $voornaam;
     private $achternaam;
 
+    public function getKlant($id)
+    {
+        $query = parent::getConnection()->prepare("SELECT * FROM klanten WHERE id = '?';");
+
+        $query->bindparam(1, $id);
+        return parent::voerQueryUit($query);
+    }
+
     public function getAllKlanten()
     {
         $query = "SELECT * FROM klanten;";
