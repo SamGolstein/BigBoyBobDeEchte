@@ -4,6 +4,7 @@ class Klanten extends Database
 {
     private $voornaam;
     private $achternaam;
+    private $id;
 
     public function getKlant($id)
     {
@@ -41,7 +42,7 @@ class Klanten extends Database
 
     public function deleteKlant($id)
     {
-        $query = "DELETE FROM klanten WHERE id = '$id';";
+        $query = "DELETE FROM klanten WHERE id = $id;";
 
         if(!parent::voerQueryUit($query))
             {
@@ -71,5 +72,15 @@ class Klanten extends Database
     public function setAchternaam($achternaam)
     {
         $this->achternaam = $achternaam;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 }
