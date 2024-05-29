@@ -31,10 +31,12 @@ $klant = $klanten->getAllKlanten();
     <main>
         <div class="filterBar"></div>
         <div class="customers">
-            <table>
+            <table cellspacing="0">
                 <tr>
                     <th>Naam</th>
                     <th>Achternaam</th>
+                    <th>Bewerken</th>
+                    <th>Verwijderen</th>
                 </tr>
                 <?php
                 foreach ($klant as $k) {

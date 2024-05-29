@@ -28,6 +28,17 @@ main {
     margin: 0 auto;
     flex-direction: column;
     width: 100vh;
+    color: white;
+
+    table {
+        border-radius: 5px;
+        overflow: hidden;
+    }    
+
+    th {
+        height: 30px;
+        background-color: #007bff;
+    }
 
     td {
         width: 100px;
@@ -44,10 +55,6 @@ main {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-table {
-    background-color: white;
 }
 
 .customer p {
