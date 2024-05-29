@@ -53,7 +53,7 @@ class Klanten extends Database
             }
     }
 
-    public function updateKlanten($id)
+    public function updateKlant($id)
     {
         $voornaam = $this->getVoornaam();
         $achternaam = $this->getAchternaam();
