@@ -20,25 +20,27 @@ main {
     display: flex;
     align-items: flex-start;
 }
-    .customers {
-        align-items: center;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin: 0 auto;
-    }
 
-    .customer {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+.customers {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 0 auto;
+    width: 100vh;
+}
 
-    .customer p {
-        font-size: 14px;
-        color: #777;
-    }
+.customer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.customer p {
+    font-size: 14px;
+    color: #777;
+}
 
 .navBar {
     height: 50px;
@@ -63,7 +65,7 @@ main {
         margin: 10px;
     }
 
-    .accountButton{
+    .accountButton {
         background-color: #007bff;
         color: #fff;
         padding: 10px 20px;
@@ -72,7 +74,7 @@ main {
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s;
-        text-decoration: none; 
+        text-decoration: none;
     }
 
     .accountButton:hover {
