@@ -17,7 +17,7 @@ $klant = $klanten->getAllKlanten();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <title>Cijfers</title>
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
 </head> 
 <body>
     <nav>
@@ -25,9 +25,9 @@ $klant = $klanten->getAllKlanten();
         <form action="" method="post">
         </form>
     </nav>
-=======
+=========
 </head>
->>>>>>> 8982b3fab873777d893947fcc27311c33ae9102d
+>>>>>>>>> Temporary merge branch 2
 
 <body>
     <nav class="navBar">
@@ -41,7 +41,6 @@ $klant = $klanten->getAllKlanten();
     </nav>
     <main>
         <div class="filterBar"></div>
-        <h2>Klanten beheer</h2>
         <div class="customers">
             <table>
                 <tr>
