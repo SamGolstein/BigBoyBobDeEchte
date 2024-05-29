@@ -1,5 +1,5 @@
 <?php
-include "database.php";
+require_once("database.php");
 class FactuurRegel extends Database {
     private $factuurregel_id;
     private $factuur_id;
