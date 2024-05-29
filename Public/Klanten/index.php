@@ -35,6 +35,7 @@ $klant = $klanten->getAllKlanten();
         <ul>
             <li><a href="../Cijfers/index.php">Home</a></li>
             <li><a href="../Klanten/index.php">Klanten</a></li>
+            <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
         <a href="" class="accountButton">Account</a>
     </nav>

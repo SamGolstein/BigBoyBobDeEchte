@@ -1,42 +1,48 @@
 <?php
-include("../../src/src/klanten.php");
+include_once('../../src/src/factuur.php');
+include_once('../../src/src/factuurRegel.php');
 
-$facturen = new Facturen();
-$factuur = $facturen->getAllFacturen();
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $klant_id = $_POST['klant_id'];
+    $datum = date('Y-m-d');
+    $product_id = $_POST['product_id'];
+    $hoeveelheid = $_POST['hoeveelheid'];
+    $prijs = $_POST['prijs'];
+
+   
+    $factuur = new Factuur($klant_id, $datum);
+    if ($factuur->save()) {
+  
+        $factuurregel = new FactuurRegel($factuur->getFactuurId(), $product_id, $hoeveelheid, $hoeveelheid * $prijs);
+        if ($factuurregel->save()) {
+        
+            $factuur->setTotaalBedrag($factuur->getTotaalBedrag() + $factuurregel->getPrijs());
+            $factuur->updateTotaal();
+            echo "Factuur  toegevoegd!";
+        } else {
+            echo "Fout bij het opslaan van de factuurregel.";
+        }
+    } else {
+        echo "Fout bij het opslaan van de factuur.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Factuur</title>
-</head> 
+    <title>Facturatiesysteem</title>
+</head>
 <body>
-    <nav>
-        <h1>Welkom!</h1>
-        <form action="" method="post">
-        </form>
-    </nav>
-
-    <main>
-        <h2>Klanten beheer</h2>
-        <table>
-            <tr>
-                <th>Naam</th>
-                <th>Achternaam</th>
-            </tr>
-            <?php 
-           
-            ?>
-        </table>
-        <div class="toevoegen">
-            <a href="toevoegen.php">Toevoegen</a>
-        </div>
-    </main>
+    <h1>Voeg een nieuwe factuur en factuurregel toe</h1>
+    <form method="post" action="">
+        Klant ID: <input type="text" name="klant_id" ><br>
+        Product ID: <input type="text" name="product_id" ><br>
+        Hoeveelheid: <input type="text" name="hoeveelheid" rquired><br>
+        Prijs per stuk: <input type="text" name="prijs"><br>
+        <input type="submit" value="Toevoegen">
+    </form>
 </body>
 </html>
