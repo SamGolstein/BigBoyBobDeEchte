@@ -17,15 +17,14 @@ $klant = $klanten->getAllKlanten();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <title>Cijfers</title>
-</head>
 </head> 
-<body>  
-        <body>
-            <nav class="navBar">
+<body>
+    <nav class="navBar">
         <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
         <ul>
             <li><a href="../Cijfers/index.php">Home</a></li>
             <li><a href="../Klanten/index.php">Klanten</a></li>
+            <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
         <a href="" class="accountButton">Account</a>
     </nav>
