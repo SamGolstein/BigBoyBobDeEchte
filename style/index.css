@@ -22,19 +22,32 @@ main {
 }
 
 .customers {
-    align-items: center;
+    padding-top: 10px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
     margin: 0 auto;
+    flex-direction: column;
     width: 100vh;
+
+    td {
+        width: 100px;
+        padding: 10px;
+    }
+
+    .toevoegen {
+        margin: 0 auto;
+    }
 }
 
 .customer {
-    background-color: #fff;
+    background-color: lightgray;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    background-color: white;
 }
 
 .customer p {
