@@ -17,7 +17,8 @@ $klant = $klanten->getAllKlanten();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <title>Cijfers</title>
-</head> 
+</head>
+
 <body>
     <nav class="navBar">
         <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
@@ -29,20 +30,41 @@ $klant = $klanten->getAllKlanten();
         <a href="" class="accountButton">Account</a>
     </nav>
     <main>
-        <div class="filterBar"></div>
+        <div class="filterBar">
+            <div class="filters">
+                <h2>Filters</h2>
+            </div>
+            <div class="searchBar">
+                <input type="text" placeholder="Zoek op klanten" id="search">
+                <i class="fa-solid fa-magnifying-glass"
+                    style="color: #969696; padding-left: 270px; z-index: 2; background: transparant; pointer-events: none;"></i>
+            </div>
+        </div>
         <div class="customers">
             <table cellspacing="0">
                 <tr>
-                    <th>Naam</th>
+                    <th>Klant Nummer</th>
+                    <th>Voornaam</th>
                     <th>Achternaam</th>
+                    <th>Email</th>
+                    <th>Woonplaats</th>
+                    <th>Straat</th>
+                    <th>Postcode</th>
+                    <th>Telefoonnummer</th>
                     <th>Bewerken</th>
                     <th>Verwijderen</th>
                 </tr>
                 <?php
                 foreach ($klant as $k) {
                     echo "<tr class='customer' id='tr_foreach'>";
+                    echo "<td>" . $k["klantId"] . "</td>";
                     echo "<td>" . $k["voornaam"] . "</td>";
                     echo "<td>" . $k["achternaam"] . "</td>";
+                    echo "<td>" . $k["email"] . "</td>";
+                    echo "<td>" . $k["woonplaats"] . "</td>";
+                    echo "<td>" . $k["straat"] . "</td>";
+                    echo "<td>" . $k["postcode"] . "</td>";
+                    echo "<td>" . $k["telefoonnummer"] . "</td>";
                     echo "<td><a href=update.php?klantenId=" . $k['klantId'] . ">Bewerken</a></td>";
                     echo "<td><a href=delete.php?klantenId=" . $k['klantId'] . ">Verwijderen</a></td>";
                     echo "</tr>";
