@@ -51,6 +51,9 @@ main {
         padding: 10px;
     }
 
+    tr:hover {
+        background-color: #f2f2f2;
+    }
 
     .toevoegen {
         margin: 0 auto;
