@@ -60,10 +60,17 @@ class Klanten extends Database
 
         $query = "UPDATE klant
                 SET voornaam = '$voornaam',
-                    periode = '$achternaam'
-                WHERE klantId = '$id';";
+                    achternaam = '$achternaam'
+                WHERE klantId = $id;";
 
-        parent::voerQueryUit($query);
+        if(!parent::voerQueryUit($query))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public function getVoornaam()
