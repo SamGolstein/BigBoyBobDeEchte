@@ -17,9 +17,7 @@ $klant = $klanten->getAllKlanten();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <title>Cijfers</title>
-<<<<<<< HEAD
 </head>
-=======
 </head> 
 <body>
     <nav>
@@ -27,7 +25,6 @@ $klant = $klanten->getAllKlanten();
         <form action="" method="post">
         </form>
     </nav>
->>>>>>> ae5fc51a021268326533fe1650916ef699a036df
 
 <body>
     <nav class="navBar">
