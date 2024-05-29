@@ -17,18 +17,7 @@ $klant = $klanten->getAllKlanten();
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <title>Cijfers</title>
-<<<<<<<<< Temporary merge branch 1
 </head> 
-<body>
-    <nav>
-        <h1>Welkom!</h1>
-        <form action="" method="post">
-        </form>
-    </nav>
-=========
-</head>
->>>>>>>>> Temporary merge branch 2
-
 <body>
     <nav class="navBar">
         <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
