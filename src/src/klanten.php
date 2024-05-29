@@ -8,9 +8,8 @@ class Klanten extends Database
 
     public function getKlant($id)
     {
-        $query = parent::getConnection()->prepare("SELECT * FROM klant WHERE klantId = '?';");
+        $query = "SELECT * FROM klant WHERE klantId = '$id';";
 
-        $query->bindparam(1, $id);
         return parent::voerQueryUit($query);
     }
 
@@ -52,6 +51,26 @@ class Klanten extends Database
             {
                 return true;
             }
+    }
+
+    public function updateKlant($id)
+    {
+        $voornaam = $this->getVoornaam();
+        $achternaam = $this->getAchternaam();
+
+        $query = "UPDATE klant
+                SET voornaam = '$voornaam',
+                    achternaam = '$achternaam'
+                WHERE klantId = $id;";
+
+        if(!parent::voerQueryUit($query))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public function getVoornaam()
