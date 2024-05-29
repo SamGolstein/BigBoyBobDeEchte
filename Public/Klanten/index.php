@@ -19,15 +19,9 @@ $klant = $klanten->getAllKlanten();
     <title>Cijfers</title>
 </head>
 </head> 
-<body>
-    <nav>
-        <h1>Welkom!</h1>
-        <form action="" method="post">
-        </form>
-    </nav>
-
-<body>
-    <nav class="navBar">
+<body>  
+        <body>
+            <nav class="navBar">
         <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
         <ul>
             <li><a href="../Cijfers/index.php">Home</a></li>
