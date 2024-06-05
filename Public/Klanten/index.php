@@ -37,8 +37,12 @@ $klant = $klanten->getAllKlanten();
             <div class="searchBar">
                 <form action="POST">
                 <input type="text" placeholder="Zoek op klanten" id="search">
-                <i class="fa-solid fa-magnifying-glass"
-                    style="color: #969696; padding-left: 270px; z-index: 2; background: transparant; pointer-events: none;"></i>
+                <label for="voornaam">Voornaam:</label>
+                <input type="radio" name="voornaam">
+                <label for="voornaam">Woonplaats:</label>
+                <input type="radio" name="woonplaats">
+                <input type="submit" name="zoeken" value="Zoeken"></input>
+                </form>
             </div>
         </div>
         <div class="customers">
