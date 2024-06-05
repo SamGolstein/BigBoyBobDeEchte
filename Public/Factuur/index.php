@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     $factuur = new Factuur($klant_id, $datum);
     if ($factuur->save()) {
-  
+        
         $factuurregel = new FactuurRegel($factuur->getFactuurId(), $product_id, $hoeveelheid, $hoeveelheid * $prijs);
         if ($factuurregel->save()) {
         

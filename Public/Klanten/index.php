@@ -38,7 +38,7 @@ $klant = $klanten->getAllKlanten();
                 <input type="text" placeholder="Zoek op klanten" id="search">
                 <i class="fa-solid fa-magnifying-glass"
                     style="color: #969696; padding-left: 270px; z-index: 2; background: transparant; pointer-events: none;"></i>
-            </div>
+            </div> 
         </div>
         <div class="customers">
             <table cellspacing="0">
