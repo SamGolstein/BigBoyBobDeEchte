@@ -35,7 +35,7 @@ $klant = $klanten->getAllKlanten();
                 <h2>Filters</h2>
             </div>
             <div class="searchBar">
-                <form action="POST">
+                <form method="POST">
                 <input type="text" placeholder="Zoek op klanten" id="search">
                 <label for="voornaam">Voornaam:</label>
                 <input type="radio" name="voornaam">
