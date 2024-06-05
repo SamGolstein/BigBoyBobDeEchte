@@ -6,7 +6,7 @@ $klant = $klanten->getAllKlanten();
 $klantdata = [];
 
 if(isset($_POST['zoeken'])){
-    if($_POST['search'] == null || $_POST['zoek'] == null)
+    if($_POST['search'] == null || !isset($_POST['zoek']))
     {
         echo "Vul een zoekterm in";
     } else 
