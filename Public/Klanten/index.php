@@ -41,7 +41,7 @@ $klant = $klanten->getAllKlanten();
                 <input type="radio" name="voornaam">
                 <label for="voornaam">Woonplaats:</label>
                 <input type="radio" name="woonplaats">
-                <button type="submit">Zoeken</button>
+                <input type="submit" name="zoeken" value="Zoeken"></input>
                 </form>
             </div>
         </div>
