@@ -3,6 +3,26 @@ include ("../../src/src/klanten.php");
 
 $klanten = new Klanten();
 $klant = $klanten->getAllKlanten();
+$klantdata = [];
+
+if(isset($_POST['zoeken'])){
+    if($_POST['search'] == null || $_POST['zoek'] == null)
+    {
+        echo "Vul een zoekterm in";
+    } else 
+    {
+        $search = $_POST['search'];
+        $selected = $_POST['zoek'];  
+        
+        $klantdata = $klanten->zoekKlant($selected, $search);
+        if($klantdata == null)
+        {
+            echo "Geen klanten gevonden";
+        } else {
+            $klant = $klantdata;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,12 +55,12 @@ $klant = $klanten->getAllKlanten();
                 <h2>Filters</h2>
             </div>
             <div class="searchBar">
-                <form action="POST">
-                <input type="text" placeholder="Zoek op klanten" id="search">
+                <form method="post">
+                <input type="text" placeholder="Zoek op klanten" name="search">
                 <label for="voornaam">Voornaam:</label>
-                <input type="radio" name="voornaam">
+                <input type="radio" name="zoek" value="voornaam">
                 <label for="voornaam">Woonplaats:</label>
-                <input type="radio" name="woonplaats">
+                <input type="radio" name="zoek" value="woonplaats">
                 <input type="submit" name="zoeken" value="Zoeken"></input>
                 </form>
             </div>

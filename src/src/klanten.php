@@ -4,6 +4,7 @@ class Klanten extends Database
 {
     private $voornaam;
     private $achternaam;
+    private $woonplaats;
     private $id;
 
     public function getKlant($id)
@@ -19,15 +20,30 @@ class Klanten extends Database
         return parent::voerQueryUit($query);
     }
 
+    public function zoekKlant($selected, $search)
+    {
+        if($selected == "voornaam")
+        {
+            $query = "SELECT * FROM klant WHERE voornaam LIKE '%$search%';";
+        }
+        else if($selected == "woonplaats")
+        {
+            $query = "SELECT * FROM klant WHERE woonplaats LIKE '%$search%';";
+        }
+        return parent::voerQueryUit($query);
+    }
+
     public function saveKlanten()
     {
         $voornaam = $this->getVoornaam();
         $achternaam = $this->getAchternaam();
+        $woonplaats = $this->getWoonplaats();
         
-        $query = parent::getConnection()->prepare("INSERT INTO klant (voornaam, achternaam)
-                                                VALUES (?,?);");
+        $query = parent::getConnection()->prepare("INSERT INTO klant (voornaam, achternaam, woonplaats)
+                                                VALUES (?,?, ?);");
         $query->bindparam(1, $voornaam);
         $query->bindparam(2, $achternaam);
+        $query->bindparam(3, $woonplaats);
 
         if($query->execute())
         {
@@ -101,5 +117,15 @@ class Klanten extends Database
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function getWoonplaats()
+    {
+        return $this->woonplaats;
+    }
+
+    public function setWoonplaats($woonplaats)
+    {
+        $this->woonplaats = $woonplaats;
     }
 }
