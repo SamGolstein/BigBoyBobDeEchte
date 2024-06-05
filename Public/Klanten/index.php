@@ -31,7 +31,7 @@ if(isset($_POST['zoeken'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../style/index.css">
+    <link rel="stylesheet" href="../../style/klanten.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -55,6 +55,8 @@ if(isset($_POST['zoeken'])){
                 <h2>Filters</h2>
             </div>
             <div class="searchBar">
+                <form method="POST">
+                <input type="text" placeholder="Zoek op klanten" id="search">
                 <form method="post">
                 <input type="text" placeholder="Zoek op klanten" name="search">
                 <label for="voornaam">Voornaam:</label>
