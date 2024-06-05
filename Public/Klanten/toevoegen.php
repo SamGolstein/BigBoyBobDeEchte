@@ -5,10 +5,12 @@ if(isset($_POST["saveKlant"]))
 {
     $voornaam = $_POST["voornaam"];
     $achternaam = $_POST["achternaam"];
+    $woonplaats = $_POST["woonplaats"];
 
     $newKlant = new Klanten();
     $newKlant->setVoornaam($voornaam);
     $newKlant->setAchternaam($achternaam);
+    $newKlant->setWoonplaats($woonplaats);
 
     if($newKlant->saveKlanten()){
         header("Location: index.php");
@@ -41,6 +43,9 @@ if(isset($_POST["saveKlant"]))
                 </div>
                 <div class="inputs">
                     <input type="text" name="achternaam" placeholder="Achternaam" value="<?php if(isset($_POST["saveKlant"])){echo $achternaam;} ?>"/>
+                </div>
+                <div class="inputs">
+                    <input type="text" name="woonplaats" placeholder="Woonplaats" value="<?php if(isset($_POST["saveKlant"])){echo $woonplaats;} ?>"/>
                 </div>
                 <p class="melding"><?php if(isset($_POST["saveKlant"])){echo $melding;} ?></p>
                 <div class="buttons">
