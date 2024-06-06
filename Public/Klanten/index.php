@@ -5,18 +5,17 @@ $klanten = new Klanten();
 $klant = $klanten->getAllKlanten();
 $klantdata = [];
 
-if(isset($_POST['zoeken'])){
-    if($_POST['search'] == null || !isset($_POST['zoek']))
-    {
-        echo "Vul een zoekterm in";
-    } else 
-    {
-        $search = $_POST['search'];
-        $selected = $_POST['zoek'];  
-        
+if (isset($_POST['zoeken'])) {
+    $search = $_POST['search'];
+    $selected = $_POST['zoek'];
+    if ($_POST['zoek'] == "alles") {
         $klantdata = $klanten->zoekKlant($selected, $search);
-        if($klantdata == null)
-        {
+    } else if ($_POST['search'] == null || !isset($_POST['zoek'])) {
+        echo "Vul een zoekterm in";
+    } else {
+
+        $klantdata = $klanten->zoekKlant($selected, $search);
+        if ($klantdata == null) {
             echo "Geen klanten gevonden";
         } else {
             $klant = $klantdata;
@@ -36,6 +35,28 @@ if(isset($_POST['zoeken'])){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <script src="../jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('tr.customer').hover(
+                function () {
+                    $(this).find('#onlyHover').css("display", "table-cell");
+                    $(this).css("box-shadow", "0 4px 8px rgba(0, 0, 0, 0.2)");
+                    $('th').css("display", "table-cell");
+                },
+                function () {
+                    $(this).find('#onlyHover').css("display", "none");
+                    $(this).css("box-shadow", "none");
+                    $('th#onlyHover').css("display", "none");
+                }
+            );
+
+            $(".customer").click(function () {
+                var id = $(this).find("td:first").text();
+                window.location.href = "klant.php?id=" + id;
+            });
+        });
+    </script>
     <title>Cijfers</title>
 </head>
 
@@ -51,19 +72,17 @@ if(isset($_POST['zoeken'])){
     </nav>
     <main>
         <div class="filterBar">
-            <div class="filters">
                 <h2>Filters</h2>
-            </div>
             <div class="searchBar">
                 <form method="POST">
-                <input type="text" placeholder="Zoek op klanten" id="search">
-                <form method="post">
-                <input type="text" placeholder="Zoek op klanten" name="search">
-                <label for="voornaam">Voornaam:</label>
-                <input type="radio" name="zoek" value="voornaam">
-                <label for="voornaam">Woonplaats:</label>
-                <input type="radio" name="zoek" value="woonplaats">
-                <input type="submit" name="zoeken" value="Zoeken"></input>
+                    <input type="text" placeholder="Zoek op klanten" id="search" name="search">
+                    </input>
+                    <select name="zoek" id="filters">
+                        <option value="alles">Alles</option>
+                        <option value="voornaam">Voornaam</option>
+                        <option value="woonplaats">Woonplaats</option>
+                    </select>
+                    <input type="submit" name="zoeken" value="Zoeken" id="zoekButton"></input>
                 </form>
             </div>
         </div>
@@ -73,13 +92,11 @@ if(isset($_POST['zoeken'])){
                     <th>Klant Nummer</th>
                     <th>Voornaam</th>
                     <th>Achternaam</th>
-                    <th>Email</th>
+                    <th id="onlyHover">Email</th>
                     <th>Woonplaats</th>
-                    <th>Straat</th>
-                    <th>Postcode</th>
-                    <th>Telefoonnummer</th>
-                    <th>Bewerken</th>
-                    <th>Verwijderen</th>
+                    <th id="onlyHover">Straat</th>
+                    <th id="onlyHover">Postcode</th>
+                    <th id="onlyHover">Telefoonnummer</th>
                 </tr>
                 <?php
                 foreach ($klant as $k) {
@@ -87,13 +104,11 @@ if(isset($_POST['zoeken'])){
                     echo "<td>" . $k["klantId"] . "</td>";
                     echo "<td>" . $k["voornaam"] . "</td>";
                     echo "<td>" . $k["achternaam"] . "</td>";
-                    echo "<td>" . $k["email"] . "</td>";
+                    echo "<td id='onlyHover'>" . $k["email"] . "</td>";
                     echo "<td>" . $k["woonplaats"] . "</td>";
-                    echo "<td>" . $k["straat"] . "</td>";
-                    echo "<td>" . $k["postcode"] . "</td>";
-                    echo "<td>" . $k["telefoonnummer"] . "</td>";
-                    echo "<td><a href=update.php?klantenId=" . $k['klantId'] . ">Bewerken</a></td>";
-                    echo "<td><a href=delete.php?klantenId=" . $k['klantId'] . ">Verwijderen</a></td>";
+                    echo "<td id='onlyHover'>" . $k["straat"] . "</td>";
+                    echo "<td id='onlyHover'>" . $k["postcode"] . "</td>";
+                    echo "<td id='onlyHover'>" . $k["telefoonnummer"] . "</td>";
                     echo "</tr>";
                 }
                 ?>
