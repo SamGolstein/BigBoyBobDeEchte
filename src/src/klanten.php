@@ -30,6 +30,10 @@ class Klanten extends Database
         {
             $query = "SELECT * FROM klant WHERE woonplaats LIKE '%$search%';";
         }
+        else if($selected == "alles")
+        {
+            $query = "SELECT * FROM klant;";
+        }
         return parent::voerQueryUit($query);
     }
 
