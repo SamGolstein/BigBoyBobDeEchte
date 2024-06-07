@@ -64,7 +64,7 @@ if (isset($_POST['zoeken'])) {
     <nav class="navBar">
         <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
         <ul>
-            <li><a href="../Cijfers/index.php">Home</a></li>
+            <li><a href="../Login/index.php">Home</a></li>
             <li><a href="../Klanten/index.php">Klanten</a></li>
             <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
