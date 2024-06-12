@@ -4,14 +4,6 @@ require_once('../../config/db_config.php');
 require_once('../../src/src/factuur.php'); 
 require_once('../../src/src/factuurRegel.php'); 
 
-
-$db = new Database();
-
-
-if (!$db->testVerbinding()) {
-    die("Database connection failed.");
-}
-
 $factuurRegel = new FactuurRegel();
 $factuurReg = $factuurRegel->getFactuurRegel();
 
