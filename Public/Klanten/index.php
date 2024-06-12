@@ -68,7 +68,7 @@ if (isset($_POST['zoeken'])) {
             <li><a href="../Klanten/index.php">Klanten</a></li>
             <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
-        <a href="" class="accountButton">Account</a>
+        <a href="account.php" class="accountButton">Account</a>
     </nav>
     <main>
         <div class="filterBar">

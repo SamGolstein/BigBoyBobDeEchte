@@ -51,6 +51,8 @@ if (isset($_POST['inloggen'])) {
     $medewerker = $medewerker->getMedewerker($gebruikersnaam, $wachtwoord);
 
     if (count($medewerker) > 0) {
+        session_start();
+        $_SESSION['gebruikersnaam'] = $gebruikersnaam;
         header('Location: ../Klanten/index.php');
     } else {
         echo "Gebruikersnaam of wachtwoord is onjuist";
