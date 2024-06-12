@@ -6,12 +6,6 @@ class FactuurRegel extends Database {
     private $omschrijving;
     private $prijs;
 
-    public function __construct($id, $factuurnr, $omschrijving, $prijs) {
-        $this-> $factuurnr =  $factuurnr;
-        $this->omschrijving = $omschrijving;
-        $this->prijs = $prijs;
-    }
-
     public function save() {
         $query = parent::getConnection()->prepare("INSERT INTO factuurregels (id, omschrijving, prijs) VALUES (?, ?, ?)");
        
@@ -20,6 +14,12 @@ class FactuurRegel extends Database {
         } else {
             return false;
         }
+    }
+
+    public function getFactuurRegel()
+    {
+        $query = "SELECT * FROM factuurregel;";
+        return parent::voerQueryUit($query);
     }
 
     public function getid() {
@@ -37,6 +37,22 @@ class FactuurRegel extends Database {
 
     public function getPrijs() {
         return $this->prijs;
+    }
+
+    public function setFactuurnr($factuurnr) {
+        $this->factuurnr = $factuurnr;
+    }
+
+    public function setOmschrijving($omschrijving) {
+        $this->omschrijving = $omschrijving;
+    }
+
+    public function setPrijs($prijs) {
+        $this->prijs = $prijs;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
     }
 }
 ?>
