@@ -4,17 +4,8 @@ require_once('../../config/db_config.php');
 require_once('../../src/src/factuur.php'); 
 require_once('../../src/src/factuurRegel.php'); 
 
-
-$db = new Database();
-
-
-if (!$db->testVerbinding()) {
-    die("Database connection failed.");
-}
-
-
-$query = "SELECT * FROM factuur";
-$klant = $db->voerQueryUit($query);
+$factuurRegel = new FactuurRegel();
+$factuurReg = $factuurRegel->getFactuurRegel();
 
 ?>
 <!DOCTYPE html>
@@ -39,14 +30,14 @@ $klant = $db->voerQueryUit($query);
         </thead>
         <tbody>
         <?php
-                foreach ($klant as $k) {
+                foreach ($factuurReg as $f) {
                     echo "<tr class='customer' id='tr_foreach'>";
-                    echo "<td>" . $k["id"] . "</td>";
-                    echo "<td>" . $k["aantal"] . "</td>";
-                    echo "<td>" . $k["omschrijving"] . "</td>";
-                    echo "<td>" . $k["prijs"] . "</td>";
-                    echo "<td><a href=update.php?klantenId=" . $k['id'] . ">Bewerken</a></td>";
-                    echo "<td><a href=delete.php?klantenId=" . $k['id'] . ">Verwijderen</a></td>";
+                    echo "<td>" . $f["id"] . "</td>";
+                    echo "<td>" . $f["aantal"] . "</td>";
+                    echo "<td>" . $f["prijs"] . "</td>";
+                    echo "<td>" . $f["omschrijving"] . "</td>";
+                    echo "<td><a href=update.php?klantenId=" . $f['id'] . ">Bewerken</a></td>";
+                    echo "<td><a href=delete.php?klantenId=" . $f['id'] . ">Verwijderen</a></td>";
                     echo "</tr>";
                 }
                 ?>
