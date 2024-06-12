@@ -2,6 +2,8 @@
 require_once("database.php");
 class Factuur extends Database
 {
+
+    
     private $factuur_id;
     private $klant_id;
     private $datum;

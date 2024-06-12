@@ -9,6 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $prijs = $_POST['prijs'];
 
     $db = new Database();
+
+    if (!$db->testVerbinding()) {
+        die("Database connection failed.");
+    }
+
     
     $query = "INSERT INTO factuurregel (aantal, omschrijving, prijs) VALUES (:aantal, :omschrijving, :prijs)";
     $statement = $db->getConnection()->prepare($query);
