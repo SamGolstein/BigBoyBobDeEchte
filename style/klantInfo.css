@@ -16,6 +16,25 @@ body {
     padding: 20px;
 }
 
+.klantInfo {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.klantInfo p {
+    margin: 10px;
+}
+
+.klantInfo h2 {
+    margin: 20px;
+}
+
 .navBar {
     height: 50px;
     color: #fff;
