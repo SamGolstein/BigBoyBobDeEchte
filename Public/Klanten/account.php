@@ -1,7 +1,15 @@
 <?php
-session_start();
-echo $_SESSION['gebruikersnaam'];
+require_once('../../src/src/medewerker.php');
+$medewerker = new Medewerker();
 
+echo "Hallo " . $_SESSION['gebruikersnaam'];
+
+if(isset($_POST['veranderen'])){
+    $nieuweGebruikersNaam = $_POST['gebruikersnaam'];
+
+    $medewerker->setGebruikersnaam($nieuweGebruikersNaam);
+    $medewerker->updateGebruikersnaam();
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +20,11 @@ echo $_SESSION['gebruikersnaam'];
     <title>Document</title>
 </head>
 <body>
-    <h1>GEPRANKED OO</h1>
+    <form method="POST">
+        <input type="text" name="gebruikersnaam" value="<?php echo $_SESSION['gebruikersnaam']; ?>">
+        <input type="text" name="wachtwoord">
+        <input type="submit" value="verander" name="veranderen">
+        <input type="submit" value="Uitloggen" name="uitloggen">
+    </form>
 </body>
 </html>
