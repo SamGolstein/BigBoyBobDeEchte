@@ -14,7 +14,7 @@ if (!$db->testVerbinding()) {
 
 
 $query = "SELECT * FROM factuur";
-$testen = $db->voerQueryUit($query);
+$klant = $db->voerQueryUit($query);
 
 ?>
 <!DOCTYPE html>
@@ -38,18 +38,18 @@ $testen = $db->voerQueryUit($query);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($testen as $test): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($test['factuurNr']); ?></td>
-                    <td><?php echo htmlspecialchars($test['klant_id']); ?></td>
-                    <td><?php echo htmlspecialchars($test['datum']); ?></td>
-                    <td><?php echo htmlspecialchars($test['totaal_bedrag']); ?></td>
-                    <td>
-                        <a href="bewerken.php?factuurNr=<?php echo $test['factuurNr']; ?>">Bewerken</a>
-                        <a href="verwijderen.php?factuurNr=<?php echo $test['factuurNr']; ?>">Verwijderen</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+        <?php
+                foreach ($klant as $k) {
+                    echo "<tr class='customer' id='tr_foreach'>";
+                    echo "<td>" . $k["id"] . "</td>";
+                    echo "<td>" . $k["aantal"] . "</td>";
+                    echo "<td>" . $k["omschrijving"] . "</td>";
+                    echo "<td>" . $k["prijs"] . "</td>";
+                    echo "<td><a href=update.php?klantenId=" . $k['id'] . ">Bewerken</a></td>";
+                    echo "<td><a href=delete.php?klantenId=" . $k['id'] . ">Verwijderen</a></td>";
+                    echo "</tr>";
+                }
+                ?>
         </tbody>
     </table>
     <br>
