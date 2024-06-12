@@ -5,6 +5,9 @@ class Klanten extends Database
     private $voornaam;
     private $achternaam;
     private $woonplaats;
+    private $straat;
+    private $postcode;
+    private $telefoonnummer;
     private $id;
 
     public function getKlant($id)
@@ -41,13 +44,21 @@ class Klanten extends Database
     {
         $voornaam = $this->getVoornaam();
         $achternaam = $this->getAchternaam();
+        $email = $this->getEmail();
         $woonplaats = $this->getWoonplaats();
+        $straat = $this->getStraat();
+        $postcode = $this->getPostcode();
+        $telefoonnummer = $this->getTelefoonnummer();
         
-        $query = parent::getConnection()->prepare("INSERT INTO klant (voornaam, achternaam, woonplaats)
-                                                VALUES (?,?, ?);");
+        $query = parent::getConnection()->prepare("INSERT INTO klant (voornaam, achternaam, email, woonplaats, straat, postcode, telefoonnummer)
+                                                VALUES (?, ?, ?, ?, ?, ?, ?);");
         $query->bindparam(1, $voornaam);
         $query->bindparam(2, $achternaam);
-        $query->bindparam(3, $woonplaats);
+        $query->bindparam(3, $email);
+        $query->bindparam(4, $woonplaats);
+        $query->bindparam(5, $straat);
+        $query->bindparam(6, $postcode);
+        $query->bindparam(7, $telefoonnummer);
 
         if($query->execute())
         {
@@ -108,6 +119,16 @@ class Klanten extends Database
         return $this->achternaam;
     }
 
+    public function setEmail($voornaam)
+    {
+        $this->voornaam = $voornaam;
+    }
+
+    public function getEmail()
+    {
+        return $this->achternaam;
+    }
+
     public function setAchternaam($achternaam)
     {
         $this->achternaam = $achternaam;
@@ -131,5 +152,35 @@ class Klanten extends Database
     public function setWoonplaats($woonplaats)
     {
         $this->woonplaats = $woonplaats;
+    }
+
+    public function getStraat()
+    {
+        return $this->straat;
+    }
+
+    public function setStraat($straat)
+    {
+        $this->straat = $straat;
+    }
+
+    public function getPostcode()
+    {
+        return $this->postcode;
+    }
+
+    public function setPostcode($postcode)
+    {
+        $this->postcode = $postcode;
+    }
+
+    public function getTelefoonnummer()
+    {
+        return $this->telefoonnummer;
+    }
+
+    public function setTelefoonnummer($telefoonnummer)
+    {
+        $this->telefoonnummer = $telefoonnummer;
     }
 }
