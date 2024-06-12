@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    align-items: flex-start;
+}
+
+.customers {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 140px;
+    flex-direction: column;
+    width: 1000px;
+    color: black;
+
+    #onlyHover {
+        display: none;
+    }
+
+    tr.customer {
+        transition: box-shadow 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    table {
+        border-radius: 5px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    th {
+        color: white;
+        height: 30px;
+        background-color: #007bff;
+    }
+
+    tr:last-child {
+        border-bottom: 2px solid #007bff;
+    }
+
+    td {
+        width: 100px;
+        padding: 10px;
+    }
+
+    tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .toevoegen {
+        margin: 0 auto;
+    }
+}
+
+.customer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.customer p {
+    font-size: 14px;
+    color: #777;
+}
+
+.navBar {
+    height: 50px;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+        height: 40px;
+        vertical-align: middle;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+    }
+
+    li {
+        margin: 10px;
+    }
+
+    .accountButton {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none;
+    }
+
+    .accountButton:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
+}
+
+.filterBar {
+    height: 100vh;
+    width: 150px;
+    display: flex;
+    background: rgb(77, 33, 201);
+    background: linear-gradient(180deg, rgba(77, 33, 201, 1) 0%, rgba(0, 123, 255, 1) 0%, rgba(37, 33, 201, 1) 100%);
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+
+    #filters {
+        background-color: #f2f2f2;
+        border: none;
+        width: 120px;
+        height: 30px;
+        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    #filters:hover {
+        background-color: #acb1b8;
+    }
+
+    #zoekButton {
+        background-color: #0056b3;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #zoekButton:hover {
+        background-color: #003c80;
+    }
+
+    .searchBar {
+        display: flex;
+        padding-top: 20px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #search {
+            background-color: #f2f2f2;
+            border: none;
+            width: 120px;
+            height: 30px;
+            box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        #search::placeholder {
+            color: rgba(150, 150, 150);
+        }
+    }
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,46 +1,59 @@
 <?php
-require_once('../../src/src/factuur.php');
-require_once('../../src/src/factuurRegel.php');
+
+require_once('../../config/db_config.php');
+require_once('../../src/src/factuur.php'); 
+require_once('../../src/src/factuurRegel.php'); 
 
 
+$db = new Database();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $klant_id = $_POST['klant_id'];
-    $datum = date('Y-m-d');
-    $hoeveelheid = $_POST['hoeveelheid'];
-    $prijs = $_POST['prijs'];
 
-   
-    $factuur = new Factuur($klant_id, $datum);
-    if ($factuur->save()) {
-        
-        $factuurregel = new FactuurRegel($factuur->getFactuurId(), $product_id, $hoeveelheid, $hoeveelheid * $prijs);
-        if ($factuurregel->save()) {
-        
-            $factuur->setTotaalBedrag($factuur->getTotaalBedrag() + $factuurregel->getPrijs());
-            $factuur->updateTotaal();
-            echo "Factuur  toegevoegd!";
-        } else {
-            echo "Fout bij het opslaan van de factuurregel.";
-        }
-    } else {
-        echo "Fout bij het opslaan van de factuur.";
-    }
+if (!$db->testVerbinding()) {
+    die("Database connection failed.");
 }
-?>
 
+
+$query = "SELECT * FROM factuur";
+$testen = $db->voerQueryUit($query);
+
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Facturatiesysteem</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturen</title>
+    <link rel="stylesheet" href="../../style/index.css">
 </head>
 <body>
-    <h1>Voeg een nieuwe factuur en factuurregel toe</h1>
-    <form method="post" action="">
-        Klant ID: <input type="text" name="klant_id" ><br>
-        Hoeveelheid: <input type="text" name="hoeveelheid" rquired><br>
-        Prijs per stuk: <input type="text" name="prijs"><br>
-        <input type="submit" value="Toevoegen">
-    </form>
+    <h1>Facturen</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Factuur Nr</th>
+                <th>Klant Id</th>
+                <th>Datum</th>
+                <th>Totaal Bedrag</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($testen as $test): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($test['factuurNr']); ?></td>
+                    <td><?php echo htmlspecialchars($test['klant_id']); ?></td>
+                    <td><?php echo htmlspecialchars($test['datum']); ?></td>
+                    <td><?php echo htmlspecialchars($test['totaal_bedrag']); ?></td>
+                    <td>
+                        <a href="bewerken.php?factuurNr=<?php echo $test['factuurNr']; ?>">Bewerken</a>
+                        <a href="verwijderen.php?factuurNr=<?php echo $test['factuurNr']; ?>">Verwijderen</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <br>
+    <a href="toevoegen.php">Toevoegen</a>
+
 </body>
 </html>
