@@ -126,7 +126,8 @@ main {
     height: 100vh;
     width: 150px;
     display: flex;
-    background-color: #007bff;
+    background: rgb(77, 33, 201);
+    background: linear-gradient(180deg, rgba(77, 33, 201, 1) 0%, rgba(0, 123, 255, 1) 0%, rgba(37, 33, 201, 1) 100%);
     flex-direction: column;
     align-items: center;
     color: #fff;

@@ -53,7 +53,7 @@ if (isset($_POST['zoeken'])) {
 
             $(".customer").click(function () {
                 var id = $(this).find("td:first").text();
-                window.location.href = "klant.php?id=" + id;
+                window.location.href = "klantInfo.php?id=" + id;
             });
         });
     </script>
@@ -64,7 +64,7 @@ if (isset($_POST['zoeken'])) {
     <nav class="navBar">
         <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
         <ul>
-            <li><a href="../Cijfers/index.php">Home</a></li>
+            <li><a href="../Login/index.php">Home</a></li>
             <li><a href="../Klanten/index.php">Klanten</a></li>
             <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
