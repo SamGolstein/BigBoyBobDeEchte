@@ -33,6 +33,7 @@ $factuurReg = $factuurRegel->getFactuurRegel();
                 foreach ($factuurReg as $f) {
                     echo "<tr class='customer' id='tr_foreach'>";
                     echo "<td>" . $f["id"] . "</td>";
+                    echo "<td>" . $f["factuurNr"] . "</td>";
                     echo "<td>" . $f["aantal"] . "</td>";
                     echo "<td>" . $f["prijs"] . "</td>";
                     echo "<td>" . $f["omschrijving"] . "</td>";
