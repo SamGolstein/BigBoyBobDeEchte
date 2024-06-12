@@ -53,7 +53,7 @@ if (isset($_POST['zoeken'])) {
 
             $(".customer").click(function () {
                 var id = $(this).find("td:first").text();
-                window.location.href = "klant.php?id=" + id;
+                window.location.href = "klantInfo.php?id=" + id;
             });
         });
     </script>
