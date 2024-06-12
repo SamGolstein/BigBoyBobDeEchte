@@ -8,23 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $omschrijving = $_POST['omschrijving'];
     $prijs = $_POST['prijs'];
 
-    $db = new Database();
+    $factuurRegel = new FactuurRegel();
+    $factuurReg = $factuurRegel->getFactuurRegel();
 
-    if (!$db->testVerbinding()) {
-        die("Database connection failed.");
-    }
+    $factuurReg->setAantal($aantal);
+    $factuurReg->setOmschrijving($omschrijving);
+    $factuurReg->setPrijs($prijs);
 
     
     $query = "INSERT INTO factuurregel (aantal, omschrijving, prijs) VALUES (:aantal, :omschrijving, :prijs)";
-    $statement = $db->getConnection()->prepare($query);
-
     
-    $statement->bindParam(':aantal', $aantal);
-    $statement->bindParam(':omschrijving', $omschrijving);
-    $statement->bindParam(':prijs', $prijs);
-
-    
-    $statement->execute();
 
     header("Location: index.php");
     exit();

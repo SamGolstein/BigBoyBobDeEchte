@@ -2,12 +2,13 @@
 require_once("database.php");
 class FactuurRegel extends Database {
     private $id;
+    private $aantal;
     private $factuurnr;
     private $omschrijving;
     private $prijs;
 
     public function save() {
-        $query = parent::getConnection()->prepare("INSERT INTO factuurregels (id, omschrijving, prijs) VALUES (?, ?, ?)");
+        $query = parent::getConnection()->prepare("INSERT INTO factuurregels (id, factuurnr, aantal ,omschrijving, prijs) VALUES (?, ?, ?)");
        
         if ($query->execute()) {
             return true;
@@ -31,7 +32,7 @@ class FactuurRegel extends Database {
     }
 
 
-    public function omschrijving() {
+    public function getOmschrijving() {
         return $this->omschrijving;
     }
 
@@ -53,6 +54,14 @@ class FactuurRegel extends Database {
 
     public function setId($id) {
         $this->id = $id;
+    }
+
+    public function getAantal(){
+        return $this->aantal;
+    }
+
+    public function setAantal($aantal){
+        $this->aantal = $aantal;
     }
 }
 ?>
