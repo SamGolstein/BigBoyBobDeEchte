@@ -22,17 +22,17 @@ class FactuurRegel extends Database {
         }
     }
 
-    public function getFactuurregelId() {
-        return $this->factuurregel_id;
+    public function getid() {
+        return $this->id;
     }
 
-    public function getFactuurId() {
-        return $this->factuur_id;
+    public function getFactuurnr() {
+        return $this->factuurnr;
     }
 
 
-    public function getHoeveelheid() {
-        return $this->hoeveelheid;
+    public function omschrijving() {
+        return $this->omschrijving;
     }
 
     public function getPrijs() {
