@@ -25,14 +25,53 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    .veranderKlant {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none;
+    }
+
+    .veranderKlant:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+    }
 }
 
-.klantInfo p {
-    margin: 10px;
-}
-
-.klantInfo h2 {
+.factuur {
     margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: center;
+
+    .facturen {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #f2f2f2;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-top: 2px;
+    }
+
+    .facturen:hover {
+        background-color: #f2f2f2;
+        cursor: pointer;
+    }
 }
 
 .navBar {
@@ -76,7 +115,7 @@ body {
     }
 }
 
-p {
+.klantInfo p {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;

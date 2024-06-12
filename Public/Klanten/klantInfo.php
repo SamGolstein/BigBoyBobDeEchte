@@ -9,6 +9,7 @@ $klant = new Klanten();
 $factuur = new Factuur();
 
 $klantInfo = $klant->getKlant($_GET['id']);
+$facturen = $factuur->getAlleFactuur($_GET['id']);
 ?>
 
 <head>
@@ -42,10 +43,33 @@ $klantInfo = $klant->getKlant($_GET['id']);
                 <p>Woonplaats: <?php echo $klant['woonplaats']; ?></p>
                 <p>Telefoonnummer: <?php echo $klant['telefoonnummer']; ?></p>
                 <p>Email: <?php echo $klant['email']; ?></p>
+                <button class="veranderKlant">Verander klant</button>
             </div>
+            <div class="factuur">
+                <h2>Facturen:</h2>
+                <br>
+                <?php
+        }
+        if (count($facturen) > 0) {
+            foreach ($facturen as $factuur) {
+                ?>
+                    <div class="facturen">
+                        <h2>Factuur</h2>
+                        <p>Factuur nummer: <?php echo $factuur['factuur_id']; ?></p>
+                        <p>Factuur datum: <?php echo $factuur['datum']; ?></p>
+                        <p>Factuur bedrag: <?php echo $factuur['totaal_bedrag']; ?></p>
+                    </div>
+                    <?php
+            }
+                ?>
+             <?php   
+        } else {
+            ?>
+            <p>Nog geen facturen</p>
             <?php
         }
         ?>
+        </div>
     </div>
 </body>
 
