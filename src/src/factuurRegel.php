@@ -1,19 +1,13 @@
 <?php
 require_once("database.php");
 class FactuurRegel extends Database {
-    private $factuurregel_id;
-    private $factuur_id;
-    private $hoeveelheid;
+    private $id;
+    private $factuurnr;
+    private $omschrijving;
     private $prijs;
 
-    public function __construct($factuur_id, $product_id, $hoeveelheid, $prijs) {
-        $this->factuur_id = $factuur_id;
-        $this->hoeveelheid = $hoeveelheid;
-        $this->prijs = $prijs;
-    }
-
     public function save() {
-        $query = parent::getConnection()->prepare("INSERT INTO factuurregels (factuur_id, hoeveelheid, prijs) VALUES (?, ?, ?)");
+        $query = parent::getConnection()->prepare("INSERT INTO factuurregels (id, omschrijving, prijs) VALUES (?, ?, ?)");
        
         if ($query->execute()) {
             return true;
@@ -22,21 +16,43 @@ class FactuurRegel extends Database {
         }
     }
 
-    public function getFactuurregelId() {
-        return $this->factuurregel_id;
+    public function getFactuurRegel()
+    {
+        $query = "SELECT * FROM factuurregel;";
+        return parent::voerQueryUit($query);
     }
 
-    public function getFactuurId() {
-        return $this->factuur_id;
+    public function getid() {
+        return $this->id;
+    }
+
+    public function getFactuurnr() {
+        return $this->factuurnr;
     }
 
 
-    public function getHoeveelheid() {
-        return $this->hoeveelheid;
+    public function omschrijving() {
+        return $this->omschrijving;
     }
 
     public function getPrijs() {
         return $this->prijs;
+    }
+
+    public function setFactuurnr($factuurnr) {
+        $this->factuurnr = $factuurnr;
+    }
+
+    public function setOmschrijving($omschrijving) {
+        $this->omschrijving = $omschrijving;
+    }
+
+    public function setPrijs($prijs) {
+        $this->prijs = $prijs;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
     }
 }
 ?>

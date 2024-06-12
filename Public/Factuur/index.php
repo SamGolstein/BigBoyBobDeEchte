@@ -4,17 +4,8 @@ require_once('../../config/db_config.php');
 require_once('../../src/src/factuur.php'); 
 require_once('../../src/src/factuurRegel.php'); 
 
-
-$db = new Database();
-
-
-if (!$db->testVerbinding()) {
-    die("Database connection failed.");
-}
-
-
-$query = "SELECT * FROM factuur";
-$testen = $db->voerQueryUit($query);
+$factuurRegel = new FactuurRegel();
+$factuurReg = $factuurRegel->getFactuurRegel();
 
 ?>
 <!DOCTYPE html>
@@ -38,18 +29,18 @@ $testen = $db->voerQueryUit($query);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($testen as $test): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($test['factuurNr']); ?></td>
-                    <td><?php echo htmlspecialchars($test['klant_id']); ?></td>
-                    <td><?php echo htmlspecialchars($test['datum']); ?></td>
-                    <td><?php echo htmlspecialchars($test['totaal_bedrag']); ?></td>
-                    <td>
-                        <a href="bewerken.php?factuurNr=<?php echo $test['factuurNr']; ?>">Bewerken</a>
-                        <a href="verwijderen.php?factuurNr=<?php echo $test['factuurNr']; ?>">Verwijderen</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+        <?php
+                foreach ($factuurReg as $f) {
+                    echo "<tr class='customer' id='tr_foreach'>";
+                    echo "<td>" . $f["id"] . "</td>";
+                    echo "<td>" . $f["aantal"] . "</td>";
+                    echo "<td>" . $f["prijs"] . "</td>";
+                    echo "<td>" . $f["omschrijving"] . "</td>";
+                    echo "<td><a href=update.php?klantenId=" . $f['id'] . ">Bewerken</a></td>";
+                    echo "<td><a href=delete.php?klantenId=" . $f['id'] . ">Verwijderen</a></td>";
+                    echo "</tr>";
+                }
+                ?>
         </tbody>
     </table>
     <br>
