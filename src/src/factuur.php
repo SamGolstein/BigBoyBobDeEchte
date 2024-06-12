@@ -21,7 +21,7 @@ class Factuur extends Database {
         $query->bindParam(2, $this->datum);
         $query->bindParam(3, $this->totaal_bedrag);
 
-        if ($query->execute()) {
+        if ($query->execute()) {i
             $this->factuur_id = $this->getConnection()->lastInsertId();
             return true;
         } else {
