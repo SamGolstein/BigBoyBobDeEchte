@@ -8,18 +8,11 @@ class Factuur extends Database {
     private $datum;
     private $totaal_bedrag;
 
-    public function __construct($klant_id, $datum) {
-        parent::__construct(); 
-        $this->klant_id = $klant_id;
-        $this->datum = $datum;
-        $this->totaal_bedrag = 0;
-    }
+    public function save()
+    {
+        $query = parent::getConnection()->prepare("INSERT INTO facturen (klant_id, datum, totaal_bedrag) VALUES (?, ?, ?)");
 
-    public function save() {
-        $query = $this->getConnection()->prepare("INSERT INTO facturen (klant_id, datum, totaal_bedrag) VALUES (?, ?, ?)");
-        $query->bindParam(1, $this->klant_id);
-        $query->bindParam(2, $this->datum);
-        $query->bindParam(3, $this->totaal_bedrag);
+        if ($query->execute()) {
 
         if ($query->execute()) {i
             $this->factuur_id = $this->getConnection()->lastInsertId();
@@ -28,7 +21,7 @@ class Factuur extends Database {
             return false;
         }
     }
-
+    }
     public function updateTotaal() {
         $query = $this->getConnection()->prepare("UPDATE facturen SET totaal_bedrag = ? WHERE factuur_id = ?");
         $query->bindParam(1, $this->totaal_bedrag);
@@ -36,7 +29,14 @@ class Factuur extends Database {
         return $query->execute();
     }
 
-    public function getFactuurId() {
+    public function getAlleFactuur($klantId)
+    {
+        $query = "SELECT * FROM factuur WHERE klant_id = '$klantId';";
+        return parent::voerQueryUit($query);
+    }
+
+    public function getFactuurId()
+    {
         return $this->factuur_id;
     }
 
