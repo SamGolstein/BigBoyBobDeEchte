@@ -14,9 +14,19 @@ $factuurRegel = new FactuurRegel();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../style/bekijken.css">
 </head>
 
 <body>
+    <nav class="navBar">
+        <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
+        <ul>
+            <li><a href="../Login/index.php">Home</a></li>
+            <li><a href="../Klanten/index.php">Klanten</a></li>
+            <li><a href="../Factuur/index.php">facturen</a></li>
+        </ul>
+        <a href="account.php" class="accountButton">Account</a>
+    </nav>
     <a href='index.php'>Terug</a>
 
     <h1>Factuur nummer <?php echo $_GET['id']; ?></h1>
@@ -37,7 +47,7 @@ $factuurRegel = new FactuurRegel();
         }
         ?>
     </table>
-    <p><?php     echo "Totaal bedrag: " . $factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag']; ?></p>
+    <p><?php echo "Totaal bedrag: " . $factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag']; ?></p>
     <form method="POST">
         <input type="text" name="omschrijving" placeholder="Omschrijving">
         <input type="text" name="aantal" placeholder="Hoeveelheid">
