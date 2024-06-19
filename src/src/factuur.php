@@ -14,7 +14,7 @@ class Factuur extends Database {
 
         if ($query->execute()) {
 
-        if ($query->execute()) {i
+        if ($query->execute()) {
             $this->factuur_id = $this->getConnection()->lastInsertId();
             return true;
         } else {
