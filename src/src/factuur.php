@@ -1,7 +1,8 @@
 <?php
-require_once("database.php");
-class Factuur extends Database
-{
+require_once('../../config/db_config.php');
+require_once('database.php');
+
+class Factuur extends Database {
     private $factuur_id;
     private $klant_id;
     private $datum;
@@ -13,15 +14,18 @@ class Factuur extends Database
 
         if ($query->execute()) {
 
+        if ($query->execute()) {i
+            $this->factuur_id = $this->getConnection()->lastInsertId();
             return true;
         } else {
             return false;
         }
     }
-
-    public function updateTotaal()
-    {
-        $query = parent::getConnection()->prepare("UPDATE facturen SET totaal_bedrag = ? WHERE factuur_id = ?");
+    }
+    public function updateTotaal() {
+        $query = $this->getConnection()->prepare("UPDATE facturen SET totaal_bedrag = ? WHERE factuur_id = ?");
+        $query->bindParam(1, $this->totaal_bedrag);
+        $query->bindParam(2, $this->factuur_id);
         return $query->execute();
     }
 
@@ -36,13 +40,11 @@ class Factuur extends Database
         return $this->factuur_id;
     }
 
-    public function setTotaalBedrag($totaal_bedrag)
-    {
+    public function setTotaalBedrag($totaal_bedrag) {
         $this->totaal_bedrag = $totaal_bedrag;
     }
 
-    public function getTotaalBedrag()
-    {
+    public function getTotaalBedrag() {
         return $this->totaal_bedrag;
     }
 }

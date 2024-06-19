@@ -1,14 +1,25 @@
 <?php
-require_once("database.php");
+require_once('../../config/db_config.php');
+require_once('database.php');
+
 class FactuurRegel extends Database {
     private $id;
+    private $aantal;
     private $factuurnr;
     private $omschrijving;
     private $prijs;
 
-    public function save() {
-        $query = parent::getConnection()->prepare("INSERT INTO factuurregels (id, omschrijving, prijs) VALUES (?, ?, ?)");
-       
+    public function __construct() {
+        parent::__construct(); // Call the parent constructor to initialize the database connection
+    }
+
+    public function saveRegel() {
+        $query = $this->getConnection()->prepare("INSERT INTO factuurregel (factuurNr, aantal, omschrijving, prijs) VALUES (?, ?, ?, ?)");
+        $query->bindParam(1, $this->factuurnr);
+        $query->bindParam(2, $this->aantal);
+        $query->bindParam(3, $this->omschrijving);
+        $query->bindParam(4, $this->prijs);
+
         if ($query->execute()) {
             return true;
         } else {
@@ -16,13 +27,12 @@ class FactuurRegel extends Database {
         }
     }
 
-    public function getFactuurRegel()
-    {
+    public function getFactuurRegel() {
         $query = "SELECT * FROM factuurregel;";
-        return parent::voerQueryUit($query);
+        return $this->voerQueryUit($query);
     }
 
-    public function getid() {
+    public function getId() {
         return $this->id;
     }
 
@@ -30,8 +40,7 @@ class FactuurRegel extends Database {
         return $this->factuurnr;
     }
 
-
-    public function omschrijving() {
+    public function getOmschrijving() {
         return $this->omschrijving;
     }
 
@@ -53,6 +62,14 @@ class FactuurRegel extends Database {
 
     public function setId($id) {
         $this->id = $id;
+    }
+
+    public function getAantal() {
+        return $this->aantal;
+    }
+
+    public function setAantal($aantal) {
+        $this->aantal = $aantal;
     }
 }
 ?>
