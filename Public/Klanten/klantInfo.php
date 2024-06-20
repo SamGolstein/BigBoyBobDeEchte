@@ -44,7 +44,7 @@ if (isset($_POST['factuurToevoegen'])) {
             <li><a href="../Klanten/index.php">Klanten</a></li>
             <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
-        <a href="" class="accountButton">Account</a>
+        <a href="account.php" class="accountButton">Account</a>
     </nav>
 
     <div class="container">
