@@ -1,51 +1,71 @@
 <?php
-
 require_once('../../config/db_config.php');
-require_once('../../src/src/factuur.php'); 
-require_once('../../src/src/factuurRegel.php'); 
+require_once('../../src/src/factuur.php');
+require_once('../../src/src/factuurRegel.php');
 
-$factuurRegel = new FactuurRegel();
-$factuurReg = $factuurRegel->getFactuurRegel();
+$factuur = new Factuur();
 
+// Example of getting klant_id (you should replace this with your actual logic)
+$klant_id = 1; // Replace with actual klant_id
+
+$facturen = $factuur->getAlleFactuur($klant_id); // Pass the klant_id
+
+// Debugging: Check if facturen are fetched
+echo "<pre>";
+print_r($facturen);
+echo "</pre>";
+
+// Hardcoded bedrijfsgegevens
+$kvknummer = "12345678";
+$bedrijfsnaam = "Mijn Bedrijf BV";
+$adres = "Straatnaam 123, 1234 AB, Stad";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facturen</title>
-    <link rel="stylesheet" href="../../style/index.css">
+    <title>Facturen Overzicht</title>
 </head>
 <body>
-    <h1>Facturen</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Factuur Nr</th>
-                <th>Klant Id</th>
-                <th>Datum</th>
-                <th>Totaal Bedrag</th>
-                <th>Acties</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-                foreach ($factuurReg as $f) {
-                    echo "<tr class='customer' id='tr_foreach'>";
-                    echo "<td>" . $f["id"] . "</td>";
-                    echo "<td>" . $f["factuurNr"] . "</td>";
-                    echo "<td>" . $f["aantal"] . "</td>";
-                    echo "<td>" . $f["prijs"] . "</td>";
-                    echo "<td>" . $f["omschrijving"] . "</td>";
-                    echo "<td><a href=update.php?klantenId=" . $f['id'] . ">Bewerken</a></td>";
-                    echo "<td><a href=delete.php?klantenId=" . $f['id'] . ">Verwijderen</a></td>";
-                    echo "</tr>";
-                }
+    <h1>Facturen Overzicht</h1>
+    <!--  -->
+        <?php foreach ($facturen as $factuur): ?>
+            <h2>Factuur ID: <?php echo $factuur['factuur_id']; ?></h2>
+            <p>Klant ID: <?php echo $factuur['klant_id']; ?></p>
+            <p>Datum: <?php echo $factuur['datum']; ?></p>
+            <p>Totaal Bedrag: €<?php echo $factuur['totaal_bedrag']; ?></p>
+            <p>KVK Nummer: <?php echo $kvknummer; ?></p>
+            <p>Bedrijfsnaam: <?php echo $bedrijfsnaam; ?></p>
+            <p>Adres: <?php echo $adres; ?></p>
+            <h3>Factuur Regels:</h3>
+            <ul>
+                <?php
+                $factuurRegel = new FactuurRegel();
+                $regels = $factuurRegel->getRegelsByFactuurnr($factuur['factuur_id']);
+            //    
+                    foreach ($regels as $regel):
                 ?>
-        </tbody>
-    </table>
-    <br>
-    <a href="toevoegen.php">Toevoegen</a>
-
+                        <li>
+                            Aantal: <?php echo $regel['aantal']; ?>,
+                            Omschrijving: <?php echo $regel['omschrijving']; ?>,
+                            Prijs: €<?php echo $regel['prijs']; ?>
+                        </li>
+                    <?php endforeach; ?>
+                <!--  -->
+                    <li>Geen regels beschikbaar.</li>
+                <!--  -->
+            </ul>
+            <form action="toevoegen_regel.php" method="post">
+                <input type="hidden" name="factuur_id" value="<?php echo $factuur['factuur_id']; ?>">
+                <button type="submit">Regel Toevoegen</button>
+            </form>
+            <hr>
+        <?php endforeach; ?>
+    <!--  -->
+        <p>Geen facturen beschikbaar.</p>
+        <a href="toevoegen_factuur.php">Nieuwe Factuur Toevoegen</a>
+    <!--  -->
 </body>
 </html>

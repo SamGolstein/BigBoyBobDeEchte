@@ -1,75 +1,58 @@
 <?php
 require_once('../../config/db_config.php');
 require_once('database.php');
+require_once('factuur.php');
 
-class FactuurRegel extends Database {
+class FactuurRegel extends Database
+{
     private $id;
     private $aantal;
     private $factuurnr;
     private $omschrijving;
     private $prijs;
 
-    public function __construct() {
-        parent::__construct(); // Call the parent constructor to initialize the database connection
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function saveRegel() {
+    public function saveRegel()
+    {
         $query = $this->getConnection()->prepare("INSERT INTO factuurregel (factuurNr, aantal, omschrijving, prijs) VALUES (?, ?, ?, ?)");
         $query->bindParam(1, $this->factuurnr);
         $query->bindParam(2, $this->aantal);
         $query->bindParam(3, $this->omschrijving);
         $query->bindParam(4, $this->prijs);
 
-        if ($query->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        return $query->execute();
     }
 
-    public function getFactuurRegel() {
-        $query = "SELECT * FROM factuurregel;";
-        return $this->voerQueryUit($query);
+    public function getRegelsByFactuurnr($factuurnr)
+    {
+        $query = $this->getConnection()->prepare("SELECT * FROM factuurregel WHERE factuurNr = ?");
+        $query->bindParam(1, $factuurnr);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getId() {
-        return $this->id;
-    }
-
-    public function getFactuurnr() {
-        return $this->factuurnr;
-    }
-
-    public function getOmschrijving() {
-        return $this->omschrijving;
-    }
-
-    public function getPrijs() {
-        return $this->prijs;
-    }
-
-    public function setFactuurnr($factuurnr) {
+    public function setFactuurnr($factuurnr)
+    {
         $this->factuurnr = $factuurnr;
     }
 
-    public function setOmschrijving($omschrijving) {
+    public function setAantal($aantal)
+    {
+        $this->aantal = $aantal;
+    }
+
+    public function setOmschrijving($omschrijving)
+    {
         $this->omschrijving = $omschrijving;
     }
 
-    public function setPrijs($prijs) {
+    public function setPrijs($prijs)
+    {
         $this->prijs = $prijs;
-    }
-
-    public function setId($id) {
-        $this->id = $id;
-    }
-
-    public function getAantal() {
-        return $this->aantal;
-    }
-
-    public function setAantal($aantal) {
-        $this->aantal = $aantal;
     }
 }
 ?>

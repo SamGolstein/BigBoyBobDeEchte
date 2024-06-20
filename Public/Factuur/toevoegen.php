@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $omschrijving = $_POST['omschrijving'];
     $prijs = $_POST['prijs'];
 
-  
+    // Create a new Factuur if needed
     $factuur = new Factuur($klant_id, $datum);
     if ($factuur->save()) {
         $factuur_id = $factuur->getFactuurId();
 
-
+        // Create the FactuurRegel
         $factuurRegel = new FactuurRegel();
         $factuurRegel->setFactuurnr($factuur_id);  
         $factuurRegel->setAantal($aantal);
@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $factuurRegel->setPrijs($prijs);
 
         if ($factuurRegel->saveRegel()) {
-     
             header("Location: index.php");
             exit();
         } else {
