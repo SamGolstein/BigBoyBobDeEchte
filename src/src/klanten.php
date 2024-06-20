@@ -8,6 +8,7 @@ class Klanten extends Database
     private $straat;
     private $postcode;
     private $telefoonnummer;
+    private $email;
     private $id;
 
     public function getKlant($id)
@@ -21,6 +22,36 @@ class Klanten extends Database
     {
         $query = "SELECT * FROM klant;";
         return parent::voerQueryUit($query);
+    }
+
+    public function updateKlant($id)
+    {
+        $voornaam = $this->getVoornaam();
+        $achternaam = $this->getAchternaam();
+        $email = $this->getEmail();
+        $woonplaats = $this->getWoonplaats();
+        $straat = $this->getStraat();
+        $postcode = $this->getPostcode();
+        $telefoonnummer = $this->getTelefoonnummer();
+
+        $query = "UPDATE klant
+                SET voornaam = '$voornaam',
+                    achternaam = '$achternaam',
+                    email = '$email',
+                    woonplaats = '$woonplaats',
+                    straat = '$straat',
+                    postcode = '$postcode',
+                    telefoonnummer = '$telefoonnummer'
+                WHERE klantId = $id;";
+
+        if(!parent::voerQueryUit($query))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public function zoekKlant($selected, $search)
@@ -91,26 +122,6 @@ class Klanten extends Database
             }
     }
 
-    public function updateKlant($id)
-    {
-        $voornaam = $this->getVoornaam();
-        $achternaam = $this->getAchternaam();
-
-        $query = "UPDATE klant
-                SET voornaam = '$voornaam',
-                    achternaam = '$achternaam'
-                WHERE klantId = $id;";
-
-        if(!parent::voerQueryUit($query))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
     public function getVoornaam()
     {
         return $this->voornaam;
@@ -126,14 +137,14 @@ class Klanten extends Database
         return $this->achternaam;
     }
 
-    public function setEmail($voornaam)
+    public function setEmail($email)
     {
-        $this->voornaam = $voornaam;
+        $this->email = $email;
     }
 
     public function getEmail()
     {
-        return $this->achternaam;
+        return $this->email;
     }
 
     public function setAchternaam($achternaam)
