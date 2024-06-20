@@ -137,14 +137,14 @@ class Klanten extends Database
         return $this->achternaam;
     }
 
-    public function setEmail($voornaam)
+    public function setEmail($email)
     {
-        $this->voornaam = $voornaam;
+        $this->email = $email;
     }
 
     public function getEmail()
     {
-        return $this->achternaam;
+        return $this->email;
     }
 
     public function setAchternaam($achternaam)
