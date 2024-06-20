@@ -59,6 +59,12 @@ class Factuur extends Database {
         return parent::voerQueryUit($query);
     }
 
+    public function getKlantId($factuurId)
+    {
+        $query = "SELECT klant_id FROM factuur WHERE factuur_id = $factuurId;";
+        return parent::voerQueryUit($query);
+    }
+
     public function setTotaalBedrag($totaal_bedrag) {
         $this->totaal_bedrag = $totaal_bedrag;
     }

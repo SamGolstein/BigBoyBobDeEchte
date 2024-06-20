@@ -64,7 +64,7 @@ if (isset($_POST['factuurToevoegen'])) {
         }
         ?>
         <form method="POST">
-            <input type="submit" value="Toevoegen" name="factuurToevoegen" id="">
+            <input type="submit" value="Toevoegen" name="factuurToevoegen" class="factuurToevoegen">
         </form>
         <?php
         if (count($facturen) > 0) {
