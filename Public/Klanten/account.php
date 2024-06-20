@@ -10,6 +10,12 @@ if(isset($_POST['veranderen'])){
     $medewerker->setGebruikersnaam($nieuweGebruikersNaam);
     $medewerker->updateGebruikersnaam();
 }
+
+if(isset($_POST['uitloggen'])){
+    $_SESSION['gebruikersnaam'] = null;
+    session_destroy();
+    header('Location: ../Login/index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +28,6 @@ if(isset($_POST['veranderen'])){
 <body>
     <form method="POST">
         <input type="text" name="gebruikersnaam" value="<?php echo $_SESSION['gebruikersnaam']; ?>">
-        <input type="text" name="wachtwoord">
         <input type="submit" value="verander" name="veranderen">
         <input type="submit" value="Uitloggen" name="uitloggen">
     </form>
