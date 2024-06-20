@@ -63,10 +63,10 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
         <div class="factuurLogo">
             <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
             <div class="bedrijfsInfo">
-            <p>BigBoyBob</p>
-            <p>J.F. Kennedylaan 49</p>
-            <p>7001 EA Doetinchem</p>
-            <p>KvK: 12345678</p>
+                <p>BigBoyBob</p>
+                <p>J.F. Kennedylaan 49</p>
+                <p>7001 EA Doetinchem</p>
+                <p>KvK: 12345678</p>
             </div>
         </div>
         <div class="klantInfo">
@@ -100,15 +100,19 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
                 ?>
                 <td style="border-bottom: 0px"></td>
                 <td>Totaal exclusief BTW</td>
-                <td><?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'], 2, ',', '.');?></td>
+                <td><?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'], 2, ',', '.'); ?>
+                </td>
                 <tr></tr>
                 <td style="border-bottom: 0px"></td>
                 <td>BTW(21%)</td>
-                <td><?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'] * 0.21, 2, ',', '.'); ?></td>
+                <td><?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'] * 0.21, 2, ',', '.'); ?>
+                </td>
                 <tr></tr>
                 <td style="border-bottom: 0px"></td>
                 <td style="font-weight: bold; border-bottom: none">Totaal inclusief BTW</td>
-                <td style="font-weight: bold; border-bottom: none"><?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'] * 1.21, 2, ',', '.'); ?></td>
+                <td style="font-weight: bold; border-bottom: none">
+                    <?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'] * 1.21, 2, ',', '.'); ?>
+                </td>
             </table>
         </div>
         <p style="margin-top: 50px">Gelieve binnen 14 dagen te betalen op NL28ABNA000000000000</p>
@@ -130,6 +134,9 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
     ?>
 </body>
 <script>
+    window.document.onload = function () {
+        mywindow.document.write('<link rel="stylesheet" href="../../style/bekijken.css">');
+    }
     let button = document.getElementById("button");
     let maakpdf = document.getElementById("maakPDF");
 
@@ -147,14 +154,13 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
         mywindow.focus();
 
         mywindow.print();
-        mywindow.onunload = function() {
+        mywindow.onunload = function () {
             window.location.reload();
         };
         mywindow.close();
 
         return true;
     });
-</script>
 </script>
 
 </html>
