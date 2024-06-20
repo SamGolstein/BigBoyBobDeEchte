@@ -27,6 +27,11 @@ if (isset($_POST['factuurToevoegen'])) {
     header("Location: klantInfo.php?id=" . $_GET['id']);
     exit();
 }
+
+if (isset($_POST['veranderKlant'])) {
+    header("Location: veranderKlant.php?id=" . $_GET['id']);
+    exit();
+}
 ?>
 
 <head>
@@ -60,7 +65,9 @@ if (isset($_POST['factuurToevoegen'])) {
                 <p>Woonplaats: <?php echo $klant['woonplaats']; ?></p>
                 <p>Telefoonnummer: <?php echo $klant['telefoonnummer']; ?></p>
                 <p>Email: <?php echo $klant['email']; ?></p>
-                <button class="veranderKlant">Verander klant</button>
+                <form method="post">
+                    <input type="submit" value="Verander klant" name="veranderKlant" class="veranderKlant">
+                </form>
             </div>
             <div class="factuur">
                 <h2>Facturen:</h2>
