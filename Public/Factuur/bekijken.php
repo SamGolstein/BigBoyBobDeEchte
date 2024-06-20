@@ -29,7 +29,7 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
             <li><a href="../Klanten/index.php">Klanten</a></li>
             <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
-        <a href="account.php" class="accountButton">Account</a>
+        <a href="../Klanten/account.php" class="accountButton">Account</a>
     </nav>
     <a href='index.php'>Terug</a>
 
