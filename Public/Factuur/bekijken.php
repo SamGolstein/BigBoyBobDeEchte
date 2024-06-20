@@ -91,8 +91,8 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
                 <table cellspacing="0">
                     <th>Uren</th>
                     <th>Omschrijving</th>
+                    <th>Prijs per uur</th>
                     <th>Bedrag</th>
-                    <th>Btw</th>
 
                     <?php
                     $factuurDetails = $factuurRegel->getFactuurRegelById($_GET['id']);
@@ -102,20 +102,23 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
                         echo "<td>" . $factuurDetail['omschrijving'] . "</td>";
                         $formattedPrice = number_format($factuurDetail['prijs'], 2, ',', '.');
                         echo "<td>€" . $formattedPrice . "</td>";
-                        echo "<td>21%</td>";
+                        echo "<td>€" . number_format($factuurDetail['uren'] * $factuurDetail['prijs'], 2, ',', '.') . "</td>";
                         echo "</tr>";
                     }
                     ?>
+                    <td style="border-bottom: 0px"></td>
                     <td style="border-bottom: 0px"></td>
                     <td>Totaal exclusief BTW</td>
                     <td><?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'], 2, ',', '.'); ?>
                     </td>
                     <tr></tr>
                     <td style="border-bottom: 0px"></td>
+                    <td style="border-bottom: 0px"></td>
                     <td>BTW(21%)</td>
                     <td><?php echo "€" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'] * 0.21, 2, ',', '.'); ?>
                     </td>
                     <tr></tr>
+                    <td style="border-bottom: 0px"></td>
                     <td style="border-bottom: 0px"></td>
                     <td style="font-weight: bold; border-bottom: none">Totaal inclusief BTW</td>
                     <td style="font-weight: bold; border-bottom: none">

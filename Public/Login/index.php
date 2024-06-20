@@ -29,7 +29,7 @@ $klant = $klanten->getAllKlanten();
         <li><a href='../Klanten/index.php'>Klanten</a></li>
         <li><a href='../Factuur/index.php'>facturen</a></li>
         </ul>";
-        echo "<a href='../login/account.php' class='accountButton'>Account</a>";
+        echo "<a href='../Klanten/account.php' class='accountButton'>Account</a>";
     } else {
         echo "";
     }
