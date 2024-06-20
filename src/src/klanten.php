@@ -27,17 +27,24 @@ class Klanten extends Database
     {
         if($selected == "voornaam")
         {
-            $query = "SELECT * FROM klant WHERE voornaam LIKE '%$search%';";
+            $query = parent::getConnection()->prepare("SELECT * FROM klant WHERE voornaam LIKE CONCAT('%', ?, '%');");
+            $query->bindparam(1, $search, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll();
         }
         else if($selected == "woonplaats")
         {
-            $query = "SELECT * FROM klant WHERE woonplaats LIKE '%$search%';";
+            $query = parent::getConnection()->prepare("SELECT * FROM klant WHERE woonplaats LIKE CONCAT('%', ?, '%');");
+            $query->bindparam(1, $search, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll();
         }
         else if($selected == "alles")
         {
-            $query = "SELECT * FROM klant;";
+            $query = parent::getConnection()->prepare("SELECT * FROM klant;");
+            $query->execute();
+            return $query->fetchAll();
         }
-        return parent::voerQueryUit($query);
     }
 
     public function saveKlanten()
