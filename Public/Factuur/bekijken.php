@@ -56,7 +56,8 @@ $klantInfo = $klant->getKlant($klantId[0]['klant_id']);
             <td style="border: 0px; visibility: hidden;"></td>
 
             <td style="font-weight: bold; border-top: 2px solid black;">
-                <p><?php echo "Totaal bedrag: €" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'], 2, ',', '.'); ?></p>
+                <p><?php echo "Totaal bedrag: €" . number_format($factuur->getTotaalBedrag($_GET['id'])[0]['totaal_bedrag'], 2, ',', '.'); ?>
+                </p>
             </td>
         </table>
         <form method="POST">
