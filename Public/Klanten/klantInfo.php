@@ -7,6 +7,11 @@ include '../../src/src/factuur.php';
 require_once('../../config/db_config.php');
 require_once('../../src/src/factuur.php');
 
+if($_SESSION['gebruikersnaam'] == null)
+{
+    header('Location: ../Login/index.php');
+}
+
 $klant = new Klanten();
 $factuur = new Factuur();
 

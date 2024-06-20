@@ -1,8 +1,12 @@
 <?php
-
 require_once('../../config/db_config.php');
 require_once('../../src/src/factuur.php'); 
 require_once('../../src/src/klanten.php');
+
+if($_SESSION['gebruikersnaam'] == null)
+{
+    header('Location: ../Login/index.php');
+}
 
 $factuur = new Factuur();
 $alleFacturen = $factuur->getAllFacturen();
