@@ -24,12 +24,18 @@ $klant = $klanten->getAllKlanten();
     <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
     <?php
     if (isset($_SESSION['gebruikersnaam'])) {
+        echo "<ul>
+        <li><a href='../Login/index.php'>Home</a></li>
+        <li><a href='../Klanten/index.php'>Klanten</a></li>
+        <li><a href='../Factuur/index.php'>facturen</a></li>
+        </ul>";
         echo "<a href='../login/account.php' class='accountButton'>Account</a>";
     } else {
-       echo "";
+        echo "";
     }
     ?>
 </nav>
+
 <body>
     <main>
         <form method="POST">
@@ -59,4 +65,5 @@ if (isset($_POST['inloggen'])) {
     }
 }
 ?>
+
 </html>

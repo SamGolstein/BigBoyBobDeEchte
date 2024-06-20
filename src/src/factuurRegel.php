@@ -16,27 +16,46 @@ class FactuurRegel extends Database
         parent::__construct();
     }
 
-    public function saveRegel()
-    {
-        $query = $this->getConnection()->prepare("INSERT INTO factuurregel (factuurNr, aantal, omschrijving, prijs) VALUES (?, ?, ?, ?)");
+    public function saveRegel() {
+        $query = $this->getConnection()->prepare("INSERT INTO factuurregel (factuur_id, uren, omschrijving, prijs) VALUES (?, ?, ?, ?)");
         $query->bindParam(1, $this->factuurnr);
         $query->bindParam(2, $this->aantal);
         $query->bindParam(3, $this->omschrijving);
         $query->bindParam(4, $this->prijs);
 
-        return $query->execute();
+        if ($query->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function getRegelsByFactuurnr($factuurnr)
-    {
-        $query = $this->getConnection()->prepare("SELECT * FROM factuurregel WHERE factuurNr = ?");
-        $query->bindParam(1, $factuurnr);
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+    public function getFactuurRegel() {
+        $query = "SELECT * FROM factuurregel;";
+        return $this->voerQueryUit($query);
+    }
+    public function getFactuurRegelById($factuurId) {
+        $query = "SELECT * FROM factuurregel WHERE factuur_id = $factuurId;";
+        return $this->voerQueryUit($query);
     }
 
-    public function setFactuurnr($factuurnr)
-    {
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getFactuurnr() {
+        return $this->factuurnr;
+    }
+
+    public function getOmschrijving() {
+        return $this->omschrijving;
+    }
+
+    public function getPrijs() {
+        return $this->prijs;
+    }
+
+    public function setFactuurnr($factuurnr) {
         $this->factuurnr = $factuurnr;
     }
 

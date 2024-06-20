@@ -4,12 +4,29 @@
 <?php
 include '../../src/src/klanten.php';
 include '../../src/src/factuur.php';
+require_once('../../config/db_config.php');
+require_once('../../src/src/factuur.php');
+
+if($_SESSION['gebruikersnaam'] == null)
+{
+    header('Location: ../Login/index.php');
+}
 
 $klant = new Klanten();
 $factuur = new Factuur();
 
 $klantInfo = $klant->getKlant($_GET['id']);
 $facturen = $factuur->getAlleFactuur($_GET['id']);
+
+if (isset($_POST['factuurToevoegen'])) {
+    $factuur = new Factuur();
+    $factuur->setId($_GET['id']);
+    $factuur->setDatum(date("Y-m-d"));
+
+    $factuur->save();
+    header("Location: klantInfo.php?id=" . $_GET['id']);
+    exit();
+}
 ?>
 
 <head>
@@ -27,7 +44,7 @@ $facturen = $factuur->getAlleFactuur($_GET['id']);
             <li><a href="../Klanten/index.php">Klanten</a></li>
             <li><a href="../Factuur/index.php">facturen</a></li>
         </ul>
-        <a href="" class="accountButton">Account</a>
+        <a href="account.php" class="accountButton">Account</a>
     </nav>
 
     <div class="container">
@@ -50,19 +67,24 @@ $facturen = $factuur->getAlleFactuur($_GET['id']);
                 <br>
                 <?php
         }
+        ?>
+        <form method="POST">
+            <input type="submit" value="Toevoegen" name="factuurToevoegen" class="factuurToevoegen">
+        </form>
+        <?php
         if (count($facturen) > 0) {
             foreach ($facturen as $factuur) {
                 ?>
                     <div class="facturen">
-                        <h2>Factuur</h2>
-                        <p>Factuur nummer: <?php echo $factuur['factuur_id']; ?></p>
-                        <p>Factuur datum: <?php echo $factuur['datum']; ?></p>
-                        <p>Factuur bedrag: <?php echo $factuur['totaal_bedrag']; ?></p>
+                    <a href='../Factuur/bekijken.php?id=<?php echo $factuur['factuur_id']; ?>'>
+                    <h2>Factuur</h2>
+                    </a>
+                    <p>Factuur nummer: <?php echo $factuur['factuur_id']; ?></p>
+                    <p>Factuur datum: <?php echo $factuur['datum']; ?></p>
+                    <p>Factuur bedrag: <?php echo $factuur['totaal_bedrag']; ?></p>
                     </div>
                     <?php
             }
-                ?>
-             <?php   
         } else {
             ?>
             <p>Nog geen facturen</p>
