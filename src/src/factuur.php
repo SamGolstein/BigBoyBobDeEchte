@@ -10,9 +10,9 @@ class Factuur extends Database {
 
     public function save()
     {
-        $query = parent::getConnection()->prepare("INSERT INTO facturen (klant_id, datum, totaal_bedrag) VALUES (?, ?, ?)");
-
-        if ($query->execute()) {
+        $query = parent::getConnection()->prepare("INSERT INTO factuur (klant_id, datum) VALUES (?, ?)");
+        $query->bindParam(1, $this->klant_id);
+        $query->bindParam(2, $this->datum);
 
         if ($query->execute()) {
             $this->factuur_id = $this->getConnection()->lastInsertId();
@@ -20,8 +20,9 @@ class Factuur extends Database {
         } else {
             return false;
         }
+    
     }
-    }
+    
     public function updateTotaal() {
         $query = $this->getConnection()->prepare("UPDATE facturen SET totaal_bedrag = ? WHERE factuur_id = ?");
         $query->bindParam(1, $this->totaal_bedrag);
@@ -35,17 +36,45 @@ class Factuur extends Database {
         return parent::voerQueryUit($query);
     }
 
+    public function getAllFacturen()
+    {
+        $query = "SELECT * FROM factuur;";
+        return parent::voerQueryUit($query);
+    }
+
     public function getFactuurId()
     {
         return $this->factuur_id;
+    }
+
+    public function updateTotaalBedrag($prijs, $factuurId)
+    {
+        $query = "UPDATE factuur SET totaal_bedrag = totaal_bedrag + $prijs WHERE factuur_id = $factuurId;";
+        return parent::voerQueryUit($query);
+    }
+
+    public function getTotaalBedrag($factuurId)
+    {
+        $query = "SELECT totaal_bedrag FROM factuur WHERE factuur_id = $factuurId;";
+        return parent::voerQueryUit($query);
+    }
+
+    public function getKlantId($factuurId)
+    {
+        $query = "SELECT klant_id FROM factuur WHERE factuur_id = $factuurId;";
+        return parent::voerQueryUit($query);
     }
 
     public function setTotaalBedrag($totaal_bedrag) {
         $this->totaal_bedrag = $totaal_bedrag;
     }
 
-    public function getTotaalBedrag() {
-        return $this->totaal_bedrag;
+    public function setId($id) {
+        $this->klant_id = $id;
+    }
+
+    public function setDatum($datum) {
+        $this->datum = $datum;
     }
 }
 ?>

@@ -1,51 +1,57 @@
 <?php
+require_once ('../../config/db_config.php');
+require_once ('../../src/src/factuur.php');
+require_once ('../../src/src/klanten.php');
 
-require_once('../../config/db_config.php');
-require_once('../../src/src/factuur.php'); 
-require_once('../../src/src/factuurRegel.php'); 
+if ($_SESSION['gebruikersnaam'] == null) {
+    header('Location: ../Login/index.php');
+}
 
-$factuurRegel = new FactuurRegel();
-$factuurReg = $factuurRegel->getFactuurRegel();
+$factuur = new Factuur();
+$alleFacturen = $factuur->getAllFacturen();
+
+$klant = new Klanten();
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facturen</title>
-    <link rel="stylesheet" href="../../style/index.css">
+    <link rel="stylesheet" href="../../style/factuurIndex.css">
 </head>
-<body>
-    <h1>Facturen</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Factuur Nr</th>
-                <th>Klant Id</th>
-                <th>Datum</th>
-                <th>Totaal Bedrag</th>
-                <th>Acties</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-                foreach ($factuurReg as $f) {
-                    echo "<tr class='customer' id='tr_foreach'>";
-                    echo "<td>" . $f["id"] . "</td>";
-                    echo "<td>" . $f["factuurNr"] . "</td>";
-                    echo "<td>" . $f["aantal"] . "</td>";
-                    echo "<td>" . $f["prijs"] . "</td>";
-                    echo "<td>" . $f["omschrijving"] . "</td>";
-                    echo "<td><a href=update.php?klantenId=" . $f['id'] . ">Bewerken</a></td>";
-                    echo "<td><a href=delete.php?klantenId=" . $f['id'] . ">Verwijderen</a></td>";
-                    echo "</tr>";
-                }
-                ?>
-        </tbody>
-    </table>
-    <br>
-    <a href="toevoegen.php">Toevoegen</a>
 
+<body>
+    <nav class="navBar">
+        <img src="../../img/BigBoyBobLogo.png" alt="BigBoyBobLogo">
+        <ul>
+            <li><a href="../Login/index.php">Home</a></li>
+            <li><a href="../Klanten/index.php">Klanten</a></li>
+            <li><a href="../Factuur/index.php">facturen</a></li>
+        </ul>
+        <a href="../Klanten/account.php" class="accountButton">Account</a>
+    </nav>
+
+    <div class="container">
+        <a href='../Klanten/index.php'>Terug</a>
+        <h1>Facturen</h1>
+        <table>
+            <th>Factuur nummer</th>
+            <th>Klant naam</th>
+            <?php
+            foreach ($alleFacturen as $factuur) {
+                echo "<tr>";
+                echo "<td> <a href='bekijken.php?id=" . $factuur['factuur_id'] . "'>" . $factuur['factuur_id'] . "</td></a>";
+                $klantNaam = $klant->getKlant($factuur['klant_id']);
+
+                echo "<td>" . $klantNaam[0]['voornaam'] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
 </body>
+
 </html>

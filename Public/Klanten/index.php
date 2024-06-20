@@ -1,5 +1,9 @@
 <?php
 include ("../../src/src/klanten.php");
+if($_SESSION['gebruikersnaam'] == null)
+{
+    header('Location: ../Login/index.php');
+}
 
 $klanten = new Klanten();
 $klant = $klanten->getAllKlanten();

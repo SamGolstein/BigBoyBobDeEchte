@@ -14,7 +14,7 @@ class FactuurRegel extends Database {
     }
 
     public function saveRegel() {
-        $query = $this->getConnection()->prepare("INSERT INTO factuurregel (factuurNr, aantal, omschrijving, prijs) VALUES (?, ?, ?, ?)");
+        $query = $this->getConnection()->prepare("INSERT INTO factuurregel (factuur_id, uren, omschrijving, prijs) VALUES (?, ?, ?, ?)");
         $query->bindParam(1, $this->factuurnr);
         $query->bindParam(2, $this->aantal);
         $query->bindParam(3, $this->omschrijving);
@@ -29,6 +29,10 @@ class FactuurRegel extends Database {
 
     public function getFactuurRegel() {
         $query = "SELECT * FROM factuurregel;";
+        return $this->voerQueryUit($query);
+    }
+    public function getFactuurRegelById($factuurId) {
+        $query = "SELECT * FROM factuurregel WHERE factuur_id = $factuurId;";
         return $this->voerQueryUit($query);
     }
 
